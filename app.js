@@ -51,7 +51,7 @@
   }
 
   /* ---------- render sections ---------- */
-  const VIDEO_MAP = { "event-video": "event", "ip-video": "ip" };
+  const VIDEO_MAP = { videos: ["event", "ip"] };
   const pad = (n) => String(n).padStart(2, "0") + " 件";
 
   $$("[data-section]").forEach((sec) => {
@@ -65,7 +65,8 @@
       items.forEach((item, idx) => grid.appendChild(buildImageCard(item, idx, items)));
       if (countEl) countEl.textContent = pad(items.length);
     } else if (vgrid) {
-      const vids = DATA.videos.filter((v) => v.img === VIDEO_MAP[key]);
+      const slugs = VIDEO_MAP[key] || [];
+      const vids = DATA.videos.filter((v) => slugs.includes(v.img));
       vids.forEach((v, idx) => vgrid.appendChild(buildVideoCard(v, idx, vids)));
       if (countEl) countEl.textContent = pad(vids.length);
     }

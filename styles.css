@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    Yang Jinbo — Portfolio 2026
    dark gallery / editorial
    ============================================================ */
@@ -224,13 +224,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   grid-template-columns:repeat(auto-fill,minmax(248px,1fr));
   gap:clamp(14px,1.8vw,24px) clamp(12px,1.6vw,22px);
 }
-#detail .grid{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
-#brand .grid{grid-template-columns:repeat(auto-fill,minmax(272px,1fr))}
+#ct .grid{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
+#vi .grid{grid-template-columns:repeat(auto-fill,minmax(272px,1fr))}
+.card.wide .card-media{aspect-ratio:4/3}
 .card.wide .card-media img{object-fit:contain;object-position:center center}
 
 /* card */
-.card{position:relative;cursor:zoom-in;opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
-.card.in{opacity:1;transform:none}
+.card{position:relative;cursor:zoom-in;opacity:0;transition:opacity .65s ease;content-visibility:auto;contain-intrinsic-size:auto 420px}
+.card.in{opacity:1}
 .card-media{
   position:relative;overflow:hidden;background:var(--card);
   aspect-ratio:var(--ar,4/5);
@@ -266,8 +267,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* video cards */
 .video-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(16px,2.4vw,30px);align-items:start;max-width:1100px}
 .video-grid:has(.vcard:only-child){grid-template-columns:1fr;max-width:940px}
-.vcard{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
-.vcard.in{opacity:1;transform:none}
+.vcard{opacity:0;transition:opacity .65s ease}
+.vcard.in{opacity:1}
 .vcard-media{
   position:relative;overflow:hidden;background:#000;border:1px solid var(--line);
   aspect-ratio:16/9;cursor:pointer;
@@ -400,7 +401,7 @@ body.light .grain{opacity:.035}
 body.light .lb-stage img{box-shadow:0 20px 60px rgba(0,0,0,.18)}
 body.light .hero-visual img{box-shadow:0 26px 60px rgba(0,0,0,.22),0 3px 10px rgba(0,0,0,.12)}
 body.light .vcard-media{border-color:rgba(0,0,0,.12)}
-body.light .card-media{background:#ded8cd}
+body.light .card-media{background:#f7f4ee}
 body.light .hero h1{text-shadow:none}
 body.light .lede{color:#3b3732}
 body.light .about-intro p{color:#3a3733}
@@ -434,7 +435,7 @@ body.light .stat b span{color:var(--accent)}
   .stats{grid-template-columns:repeat(2,1fr);gap:26px 16px}
   .chapter-head{grid-template-columns:auto 1fr;gap:12px 16px}
   .count{grid-column:2;padding-top:0}
-  .grid,#detail .grid,#brand .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .grid,#ct .grid,#vi .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
   .card-info h3{font-size:13px}
   .card-info p{display:none}
   .contact-links{grid-template-columns:1fr}
