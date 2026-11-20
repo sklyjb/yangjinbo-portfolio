@@ -447,6 +447,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .big-text::after{content:"↗";font-size:.8em;color:var(--dim);transition:transform .3s,color .3s}
 .big-link:hover .big-text::after{transform:translate(3px,-3px);color:var(--accent)}
 
+.resume-btn{margin-top:clamp(26px,3.4vw,40px)}
 /* ---------------- footer ---------------- */
 .site-foot{
   max-width:var(--maxw);margin:0 auto;padding:26px var(--pad) 40px;
@@ -612,6 +613,14 @@ body.light .feature-media{box-shadow:0 2px 6px rgba(0,0,0,.06)}
 
 @supports not (height: 100svh){
   .hero{min-height:100vh}
+}
+
+.resume-img{
+  width:100%;max-width:860px;height:auto;display:block;margin:0 auto 48px;
+  border:1px solid var(--line);background:#fff;
+}
+@media print{
+  .resume-img{max-width:none;width:100%;border:0;margin:0}
 }
 
 /* ---------------- responsive ---------------- */
