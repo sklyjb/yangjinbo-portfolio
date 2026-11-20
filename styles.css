@@ -317,6 +317,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   opacity:0;transition:opacity .3s ease;
   backdrop-filter:blur(8px);
 }
+.lightbox[hidden]{display:none}
 .lightbox.open{opacity:1}
 .lb-bar{
   display:flex;align-items:center;gap:16px;padding:16px clamp(16px,3vw,34px);
