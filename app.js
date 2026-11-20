@@ -59,10 +59,14 @@
     const grid = $("[data-grid]", sec);
     const vgrid = $("[data-video-grid]", sec);
     const countEl = $("[data-count]", sec);
+    const feat = $("[data-feature]", sec);
 
     if (grid) {
       const items = DATA.sections[key] || [];
-      items.forEach((item, idx) => grid.appendChild(buildImageCard(item, idx, items)));
+      items.forEach((item, idx) => {
+        if (idx === 0 && feat) feat.appendChild(buildFeature(item, idx, items));
+        else grid.appendChild(buildImageCard(item, idx, items));
+      });
       if (countEl) countEl.textContent = pad(items.length);
     } else if (vgrid) {
       const slugs = VIDEO_MAP[key] || [];
@@ -71,6 +75,27 @@
       if (countEl) countEl.textContent = pad(vids.length);
     }
   });
+
+  function buildFeature(item, idx, list) {
+    const box = document.createElement("article");
+    box.className = "feature";
+    box.innerHTML = `
+      <div class="feature-media" role="button" tabindex="0" aria-label="${esc(item.title)}">
+        <img src="${fullOf(item.img)}" alt="${esc(item.title)}" loading="lazy" decoding="async">
+      </div>
+      <div class="feature-caption">
+        <span class="mono">Main Visual</span>
+        <h3>${esc(item.title)}</h3>
+        <p>${esc(item.desc)}</p>
+      </div>`;
+    const media = $(".feature-media", box);
+    const open = () => openLightbox(list, idx);
+    media.addEventListener("click", open);
+    media.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+    });
+    return box;
+  }
 
   function buildImageCard(item, idx, list) {
     const card = document.createElement("article");
