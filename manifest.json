@@ -99,50 +99,6 @@
   "bytes": 193300
  },
  {
-  "slug": "vi-logo-new",
-  "section": "vi",
-  "title": "新标识 · 主图形",
-  "desc": "盾形 + 上升箭头的核心图形",
-  "w": 597,
-  "h": 597,
-  "full": "assets/img/vi-logo-new.webp",
-  "thumb": "assets/thumb/vi-logo-new.webp",
-  "bytes": 25288
- },
- {
-  "slug": "vi-logo-h",
-  "section": "vi",
-  "title": "标识组合 · 横版",
-  "desc": "横版标识组合规范",
-  "w": 1884,
-  "h": 597,
-  "full": "assets/img/vi-logo-h.webp",
-  "thumb": "assets/thumb/vi-logo-h.webp",
-  "bytes": 31922
- },
- {
-  "slug": "vi-logo-v",
-  "section": "vi",
-  "title": "标识组合 · 竖版",
-  "desc": "竖版标识组合，用于易拉宝与展板",
-  "w": 1210,
-  "h": 943,
-  "full": "assets/img/vi-logo-v.webp",
-  "thumb": "assets/thumb/vi-logo-v.webp",
-  "bytes": 41226
- },
- {
-  "slug": "vi-logo-old",
-  "section": "vi",
-  "title": "旧标识",
-  "desc": "迭代前的旧标识，作为演变对照",
-  "w": 484,
-  "h": 138,
-  "full": "assets/img/vi-logo-old.webp",
-  "thumb": "assets/thumb/vi-logo-old.webp",
-  "bytes": 3022
- },
- {
   "slug": "vi-walkin",
   "section": "vi",
   "title": "走进创华 · 品牌页",
