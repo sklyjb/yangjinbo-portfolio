@@ -11,7 +11,7 @@
   --line-2:rgba(255,255,255,.16);
   --fg:#f3f1ec;
   --muted:#8f8f98;
-  --dim:#5b5b64;
+  --dim:#6d6d77;
   --accent:#ff5a36;
   --bar-bg:rgba(10,10,11,.78);
   --glow:rgba(255,90,54,.10);
@@ -476,8 +476,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 .lb-close:hover{background:rgba(255,255,255,.1);transform:rotate(90deg)}
 .lb-stage{
-  flex:1;overflow:auto;display:flex;align-items:flex-start;justify-content:center;
-  padding:clamp(14px,3vw,40px);-webkit-overflow-scrolling:touch;
+  flex:1;overflow:auto;display:flex;flex-direction:column;align-items:center;
+  padding:clamp(14px,3vw,40px);
+  padding-top:calc(clamp(14px,3vw,40px) + env(safe-area-inset-top,0px));
+  padding-bottom:calc(clamp(14px,3vw,40px) + env(safe-area-inset-bottom,0px));
+  -webkit-overflow-scrolling:touch;
 }
 .lb-stage img{max-width:min(100%,1200px);height:auto;margin:0 auto;box-shadow:0 30px 80px rgba(0,0,0,.6)}
 .lb-stage video{max-width:min(100%,1100px);max-height:calc(100svh - 200px);height:auto;background:#000}
@@ -605,6 +608,10 @@ body.light .feature-media{box-shadow:0 2px 6px rgba(0,0,0,.06)}
   .vcard-info p{font-size:8pt;color:#555!important}
   .site-foot{display:none}
   a{color:#000!important;text-decoration:none}
+}
+
+@supports not (height: 100svh){
+  .hero{min-height:100vh}
 }
 
 /* ---------------- responsive ---------------- */

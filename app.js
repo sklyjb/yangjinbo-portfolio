@@ -245,11 +245,15 @@
       const p = v.play();
       if (p && p.catch) p.catch(() => {});
     } else {
-      const img = document.createElement("img");
-      img.src = fullOf(it.img);
-      img.alt = it.title;
-      img.decoding = "async";
-      lbStage.appendChild(img);
+      const n = it.slices || 1;
+      for (let i = 1; i <= n; i++) {
+        const img = document.createElement("img");
+        img.src = i === 1 ? fullOf(it.img) : `assets/img/${it.img}-${i}.webp`;
+        img.alt = i === 1 ? it.title : "";
+        img.decoding = "async";
+        if (i > 1) img.loading = "lazy";
+        lbStage.appendChild(img);
+      }
       lbStage.scrollTop = 0;
     }
     lbTitle.textContent = it.title;
