@@ -527,6 +527,29 @@ body.light .spec-cell b{color:#4a463f}
 body.light .site-foot{color:#6f6b64}
 body.light .stat b span{color:var(--accent)}
 
+/* ---------------- polish ---------------- */
+.card:hover .card-info h3{color:var(--accent)}
+.card-info h3{transition:color .25s}
+body.light .card-media{box-shadow:0 1px 2px rgba(0,0,0,.05)}
+body.light .feature-media{box-shadow:0 2px 6px rgba(0,0,0,.06)}
+.feature-media{transition:border-color .3s}
+.feature-media:hover{border-color:var(--line-2)}
+.atlas-grid b{transition:color .25s}
+.atlas-grid a:hover b{color:var(--accent)}
+
+@media (max-width:760px){
+  .grid.grid--detail{columns:1}
+  .chnav{flex-direction:column;gap:20px;align-items:stretch}
+  .chnav-item{max-width:100%}
+  .chnav-item.next{text-align:left;margin-left:0}
+  .chintro{padding-top:76px}
+  .chbar-c{display:none}
+  .card-media{max-height:64vh}
+  .feature-media img{max-height:56vh}
+  .atlas-grid b{font-size:13px}
+  .atlas-grid em{font-size:11px}
+}
+
 /* ---------------- responsive ---------------- */
 @media (max-width:1100px){
   .grid{columns:3}
