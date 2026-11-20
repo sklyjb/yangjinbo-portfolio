@@ -623,6 +623,44 @@ body.light .feature-media{box-shadow:0 2px 6px rgba(0,0,0,.06)}
   .resume-img{max-width:none;width:100%;border:0;margin:0}
 }
 
+/* ---------------- resume (vector) ---------------- */
+.cvbody{background:#e9e6e0;color:#141312}
+.cv-wrap{max-width:920px;margin:0 auto;padding:74px var(--pad) 60px}
+.cv{background:#fff;color:#141312;padding:clamp(26px,4vw,54px) clamp(24px,4vw,50px);box-shadow:0 10px 40px rgba(0,0,0,.10)}
+.cv-head{display:flex;align-items:flex-start;gap:24px;padding-bottom:18px;border-bottom:2px solid #141312}
+.cv-head-main{flex:1;min-width:0}
+.cv-head h1{margin:0 0 8px;font-size:clamp(28px,4vw,38px);font-weight:800;letter-spacing:.02em;line-height:1.1}
+.cv-meta{margin:0 0 6px;font-size:13.5px;color:#3a3733}
+.cv-target{margin:0;font-size:13.5px;color:#141312;font-weight:600}
+.cv-photo{width:96px;height:auto;flex:none;border:1px solid #ddd;object-fit:cover}
+.cv-sec{margin-top:22px}
+.cv-sec h2{
+  margin:0 0 10px;padding:5px 10px;background:#ececec;color:#141312;
+  font-size:14px;font-weight:700;letter-spacing:.08em;
+}
+.cv-list{margin:0;padding-left:20px;font-size:13px;line-height:1.85;color:#26231f}
+.cv-list li{margin-bottom:5px}
+.cv-list li b{color:#141312}
+.cv-list.plain{list-style:none;padding-left:0}
+.cv-note{margin:6px 0 0;font-size:12.5px;line-height:1.8;color:#3a3733}
+.cv-job{margin-bottom:14px}
+.cv-job-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 12px;margin-bottom:6px;font-size:13px}
+.cv-co{font-weight:700;color:#141312}
+.cv-role{color:#3a3733}
+.cv-date{margin-left:auto;color:#6b6761;font-size:12.5px}
+.cv-skill{margin:0;font-size:12.5px;line-height:1.9;color:#26231f}
+.cv-foot{margin-top:24px;padding-top:12px;border-top:1px solid #ddd;font-size:12px;color:#6b6761}
+
+@media print{
+  @page{size:A4;margin:13mm 14mm}
+  html,body{background:#fff!important}
+  .cv-wrap{padding:0;max-width:none}
+  .cv{box-shadow:none;padding:0}
+  .cv-sec{break-inside:avoid}
+  .cv-job{break-inside:avoid}
+  .cv-foot{display:none}
+}
+
 /* ---------------- responsive ---------------- */
 @media (max-width:1100px){
   .grid{columns:3}
