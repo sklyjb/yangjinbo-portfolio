@@ -200,6 +200,8 @@
       v.playsInline = true;
       v.preload = "metadata";
       lbStage.appendChild(v);
+      const p = v.play();
+      if (p && p.catch) p.catch(() => {});
     } else {
       const img = document.createElement("img");
       img.src = it.full;
