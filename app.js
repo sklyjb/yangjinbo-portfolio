@@ -2,59 +2,72 @@
 (function () {
   "use strict";
 
-  const DATA = window.PORTFOLIO || { images: [], videos: [] };
+  const DATA = window.PORTFOLIO || { sections: {}, videos: [] };
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
 
-  /* ---------- hero mosaic ---------- */
-  const heroPicks = [
-    "poster-annual", "poster-reverse", "live-bg-2", "brand-cards-01",
-    "poster-harmony", "detail-credit", "poster-xhs", "poster-acquire",
-  ];
-  const mosaic = $("#heroMosaic");
-  if (mosaic) {
-    const cells = 15;
-    const pool = heroPicks
-      .map((s) => DATA.images.find((i) => i.slug === s))
-      .filter(Boolean);
-    for (let i = 0; i < cells; i++) {
-      const item = pool[i % pool.length];
-      if (!item) break;
-      const img = document.createElement("img");
-      img.src = item.thumb;
-      img.alt = "";
-      img.decoding = "async";
-      img.loading = i < 5 ? "eager" : "lazy";
-      mosaic.appendChild(img);
-    }
+  const thumbOf = (n) => `assets/thumb/${n}.webp`;
+  const fullOf = (n) => `assets/img/${n}.webp`;
+  const videoSrc = (n) => `assets/video/${n}.mp4`;
+  const videoPoster = (n) => `assets/video/${n}-poster.webp`;
+
+  const allImages = Object.values(DATA.sections).flat();
+
+  /* ---------- theme ---------- */
+  const THEME_KEY = "yjb-theme";
+  const themeBtn = $("#themeToggle");
+  function applyTheme(mode) {
+    document.body.classList.toggle("light", mode === "light");
+    if (themeBtn) themeBtn.setAttribute("aria-pressed", String(mode === "light"));
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", mode === "light" ? "#f2efe9" : "#0a0a0b");
+  }
+  applyTheme(localStorage.getItem(THEME_KEY) === "light" ? "light" : "dark");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", () => {
+      const next = document.body.classList.contains("light") ? "dark" : "light";
+      applyTheme(next);
+      localStorage.setItem(THEME_KEY, next);
+    });
   }
 
-  /* ---------- render grids ---------- */
-  const sectionMap = {};
+  /* ---------- hero visual ---------- */
+  const heroPicks = [
+    "poster-reverse", "poster-annual", "poster-illegal",
+  ];
+  const heroBox = $("#heroVisual");
+  if (heroBox) {
+    heroPicks.forEach((slug) => {
+      const item = allImages.find((i) => i.img === slug);
+      if (!item) return;
+      const fig = document.createElement("figure");
+      const img = document.createElement("img");
+      img.src = thumbOf(slug);
+      img.alt = "";
+      img.decoding = "async";
+      fig.appendChild(img);
+      heroBox.appendChild(fig);
+    });
+  }
+
+  /* ---------- render sections ---------- */
+  const VIDEO_MAP = { "event-video": "event", "ip-video": "ip" };
+  const pad = (n) => String(n).padStart(2, "0") + " 件";
+
   $$("[data-section]").forEach((sec) => {
     const key = sec.dataset.section;
     const grid = $("[data-grid]", sec);
     const vgrid = $("[data-video-grid]", sec);
     const countEl = $("[data-count]", sec);
 
-    let items = [];
     if (grid) {
-      items = DATA.images.filter((i) => i.section === key);
-      grid.style.setProperty("--ar", sec.style.getPropertyValue("--ar") || "4/5");
+      const items = DATA.sections[key] || [];
+      items.forEach((item, idx) => grid.appendChild(buildImageCard(item, idx, items)));
+      if (countEl) countEl.textContent = pad(items.length);
     } else if (vgrid) {
-      items = DATA.videos.filter((v) => v.section === key);
-    }
-    sectionMap[key] = items;
-
-    items.forEach((item, idx) => {
-      const el = grid
-        ? buildImageCard(item, idx, items)
-        : buildVideoCard(item, idx);
-      (grid || vgrid).appendChild(el);
-    });
-
-    if (countEl) {
-      countEl.textContent = String(items.length).padStart(2, "0") + " 件";
+      const vids = DATA.videos.filter((v) => v.img === VIDEO_MAP[key]);
+      vids.forEach((v, idx) => vgrid.appendChild(buildVideoCard(v, idx, vids)));
+      if (countEl) countEl.textContent = pad(vids.length);
     }
   });
 
@@ -65,14 +78,15 @@
     card.setAttribute("tabindex", "0");
     card.setAttribute("aria-label", item.title);
 
-    const tall = item.h / item.w > 2.2;
-    const wide = item.w / item.h > 1.15;
+    const tall = item.r > 2.2;
+    const wide = item.r > 0 && 1 / item.r > 1.15;
     if (tall) card.classList.add("tall");
     if (wide) card.classList.add("wide");
+
     card.innerHTML = `
       <div class="card-media">
-        <img src="${item.thumb}" alt="${esc(item.title)}" loading="lazy" decoding="async">
-        ${tall ? '<span class="card-tag">长图 · 点击查看</span>' : '<span class="card-tag">查看</span>'}
+        <img src="${thumbOf(item.img)}" alt="${esc(item.title)}" loading="lazy" decoding="async">
+        <span class="card-tag">${tall ? "长图 · 点击查看" : "查看"}</span>
       </div>
       <div class="card-info">
         <h3>${esc(item.title)}</h3>
@@ -87,22 +101,22 @@
     return card;
   }
 
-  function buildVideoCard(v, idx) {
+  function buildVideoCard(v, idx, list) {
     const card = document.createElement("article");
-    card.className = "vcard" + (v.h > v.w ? " vertical" : "");
-    const dur = v.dur ? `${v.dur} · ${v.ratio}` : v.ratio;
+    card.className = "vcard" + (v.r > 1 ? " vertical" : "");
+    const meta = `${v.dur} · ${v.ratio}`;
     card.innerHTML = `
       <div class="vcard-media" tabindex="0" role="button" aria-label="播放 ${esc(v.title)}">
-        <img src="${v.poster}" alt="${esc(v.title)}" loading="lazy" decoding="async">
+        <img src="${videoPoster(v.img)}" alt="${esc(v.title)}" loading="lazy" decoding="async">
         <div class="vcard-play"><span>▶</span></div>
       </div>
-      <span class="mono">${esc(dur)}</span>
+      <span class="mono">${esc(meta)}</span>
       <div class="vcard-info">
         <h3>${esc(v.title)}</h3>
         <p>${esc(v.desc)}</p>
       </div>`;
     const btn = $(".vcard-media", card);
-    const open = () => openLightbox(DATA.videos.filter((x) => x.section === v.section), idx);
+    const open = () => openLightbox(list, idx);
     btn.addEventListener("click", open);
     btn.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
@@ -147,14 +161,14 @@
     revealEls.forEach(show);
   }
 
-  /* ---------- nav active + topbar + progress ---------- */
+  /* ---------- nav active + progress ---------- */
   const navLinks = $$(".chapters a");
   const sections = $$("main section[id]");
   const topbar = $("#topbar");
   const bar = $(".progress i");
 
   function onScroll() {
-    const y = window.scrollY || 0;
+    const y = window.scrollY || document.scrollingElement.scrollTop || 0;
     topbar.classList.toggle("solid", y > 40);
     const h = document.documentElement.scrollHeight - window.innerHeight;
     if (bar) bar.style.transform = `scaleX(${h > 0 ? Math.min(1, y / h) : 0})`;
@@ -191,10 +205,10 @@
     const it = state.list[state.i];
     if (!it) return;
     lbStage.innerHTML = "";
-    if (it.kind === "video") {
+    if (it.dur) {
       const v = document.createElement("video");
-      v.src = it.src;
-      v.poster = it.poster;
+      v.src = videoSrc(it.img);
+      v.poster = videoPoster(it.img);
       v.controls = true;
       v.autoplay = true;
       v.playsInline = true;
@@ -204,7 +218,7 @@
       if (p && p.catch) p.catch(() => {});
     } else {
       const img = document.createElement("img");
-      img.src = it.full;
+      img.src = fullOf(it.img);
       img.alt = it.title;
       img.decoding = "async";
       lbStage.appendChild(img);
@@ -228,7 +242,7 @@
 
   function closeLightbox() {
     const v = $("#lbStage video");
-    if (v) { v.pause(); }
+    if (v) v.pause();
     lb.classList.remove("open");
     document.body.style.overflow = "";
     setTimeout(() => {
@@ -250,7 +264,6 @@
     if (e.key === "ArrowRight") step(1);
   });
 
-  // touch swipe
   let tx = 0, ty = 0;
   lbStage.addEventListener("touchstart", (e) => {
     tx = e.touches[0].clientX; ty = e.touches[0].clientY;
@@ -261,18 +274,5 @@
     if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.6) step(dx < 0 ? 1 : -1);
   }, { passive: true });
 
-  /* contact links use native mailto: / tel: behaviour */
-
-  let toastEl = null, toastTimer = 0;
-  function toast(msg) {
-    if (!toastEl) {
-      toastEl = document.createElement("div");
-      toastEl.className = "toast";
-      document.body.appendChild(toastEl);
-    }
-    toastEl.textContent = msg;
-    requestAnimationFrame(() => toastEl.classList.add("show"));
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toastEl.classList.remove("show"), 1800);
-  }
+  /* contact links use native mailto: / tel: */
 })();
