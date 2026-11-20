@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>线下活动海报及详情页 · 杨金波作品集</title>
+<meta name="description" content="每月 3 场线下授课与招商活动的视觉链路：预热海报、邀请函、详情承接页，一套节奏走完。">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="chbar">
+  <a class="chbar-back" href="index.html"><span aria-hidden="true">←</span> 作品集</a>
+  <span class="mono chbar-c">Chapter 06 / 07</span>
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换深色 / 浅色" aria-pressed="false"><span>◐</span></button>
+</header>
+
+<main>
+  <section class="chintro" id="xp" data-section="xp">
+    <p class="eyebrow"><span class="dot"></span>06 · 14 件作品</p>
+    <h1>线下活动海报及详情页</h1>
+    <p class="chapter-note">每月 3 场线下授课与招商活动的视觉链路：预热海报、邀请函、详情承接页，一套节奏走完。</p>
+
+    <div class="spec">
+      <div class="spec-cell"><span class="mono">主色</span><span class="swatches"><i style="background:#AD1713"></i><i style="background:#FFE201"></i><i style="background:#AD996F"></i><i style="background:#F6F1E7"></i></span></div>
+      <div class="spec-cell"><span class="mono">规格</span><b>750×1334 海报 · 详情长页</b></div>
+      <div class="spec-cell"><span class="mono">链路</span><b>预热海报 → 邀请函 → 详情承接</b></div>
+      <div class="spec-cell"><span class="mono">思路</span><b>同一场活动三张图，主色和标题位置保持一致</b></div>
+    </div>
+
+    <div class="grid grid--detail" data-grid></div>
+  </section>
+
+  <nav class="chnav">
+    <a class="chnav-item" href="chapter-zq.html"><span class="mono">上一章</span><b>线上宣传工具包</b></a>
+    <a class="chnav-item next" href="chapter-videos.html"><span class="mono">下一章</span><b>视频</b></a>
+  </nav>
+</main>
+
+<footer class="site-foot">
+  <span>© 2026 杨金波</span>
+  <span class="mono">Portfolio · Built with care</span>
+  <span>本站图文与视频均为本人作品</span>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lb-bar">
+    <span class="lb-index mono" id="lbIndex"></span>
+    <span class="lb-title" id="lbTitle"></span>
+    <button class="lb-close" id="lbClose" aria-label="关闭">✕</button>
+  </div>
+  <button class="lb-nav prev" id="lbPrev" aria-label="上一张">←</button>
+  <button class="lb-nav next" id="lbNext" aria-label="下一张">→</button>
+  <div class="lb-stage" id="lbStage"></div>
+  <p class="lb-desc" id="lbDesc"></p>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

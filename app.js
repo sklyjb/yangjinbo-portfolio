@@ -197,7 +197,7 @@
 
   function onScroll() {
     const y = window.scrollY || document.scrollingElement.scrollTop || 0;
-    topbar.classList.toggle("solid", y > 40);
+    if (topbar) topbar.classList.toggle("solid", y > 40);
     const h = document.documentElement.scrollHeight - window.innerHeight;
     if (bar) bar.style.transform = `scaleX(${h > 0 ? Math.min(1, y / h) : 0})`;
 

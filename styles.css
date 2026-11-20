@@ -219,6 +219,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 .chapter-title p{margin:0;max-width:56ch;color:var(--muted);font-size:15px;line-height:1.75}
 .count{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--dim);padding-top:1.1em;white-space:nowrap}
+.chapter-meta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;padding-top:1.05em}
+.chapter-meta .count{padding-top:0}
+.ch-more{font-size:12px;color:var(--muted);white-space:nowrap;transition:color .25s}
+.ch-more:hover{color:var(--accent)}
+.chapter-title h2 a{transition:color .25s}
+.chapter-title h2 a:hover{color:var(--accent)}
 
 .grid{
   columns:4;
@@ -256,6 +262,39 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,80px);
   padding:clamp(22px,3vw,34px) 0;border-bottom:1px solid var(--line);
 }
+
+/* ---------------- chapter detail pages ---------------- */
+.chbar{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;align-items:center;gap:16px;
+  padding:13px var(--pad);
+  background:var(--bar-bg);border-bottom:1px solid var(--line);
+  backdrop-filter:saturate(140%) blur(14px);-webkit-backdrop-filter:saturate(140%) blur(14px);
+}
+.chbar-back{font-size:13px;color:var(--muted);transition:color .25s}
+.chbar-back:hover{color:var(--fg)}
+.chbar-c{flex:1;color:var(--dim)!important}
+
+.chintro{max-width:var(--maxw);margin:0 auto;padding:clamp(84px,11vw,150px) var(--pad) 0}
+.chintro h1{
+  margin:0 0 22px;font-size:clamp(34px,6.2vw,84px);line-height:1.03;
+  font-weight:700;letter-spacing:-.02em;
+}
+.chintro .chapter-note{max-width:62ch;font-size:15px;margin:0 0 clamp(26px,3.4vw,40px)}
+.chintro .spec{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:clamp(14px,2.4vw,34px)}
+
+.grid--detail{columns:2;column-gap:clamp(16px,2.4vw,32px)}
+.grid--detail .card-media{max-height:none}
+
+.chnav{
+  max-width:var(--maxw);margin:0 auto;padding:clamp(44px,6vw,84px) var(--pad);
+  display:flex;justify-content:space-between;align-items:flex-start;gap:20px;
+  border-top:1px solid var(--line);margin-top:clamp(48px,7vw,96px);
+}
+.chnav-item{display:flex;flex-direction:column;gap:7px;max-width:46%}
+.chnav-item.next{text-align:right;margin-left:auto}
+.chnav-item b{font-size:clamp(15px,1.9vw,21px);font-weight:600;line-height:1.4;transition:color .25s}
+.chnav-item:hover b{color:var(--accent)}
 
 /* ---------------- spec strip (per chapter) ---------------- */
 .spec{
