@@ -81,8 +81,10 @@
 
     const tall = item.r > 2.2;
     const wide = item.r > 0 && 1 / item.r > 1.15;
+    const strip = item.r > 0 && item.r < 0.42;
     if (tall) card.classList.add("tall");
     if (wide) card.classList.add("wide");
+    if (strip) card.classList.add("strip");
 
     card.innerHTML = `
       <div class="card-media">
