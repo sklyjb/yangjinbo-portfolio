@@ -51,7 +51,7 @@
   }
 
   /* ---------- render sections ---------- */
-  const VIDEO_MAP = { videos: ["event", "ip"] };
+  const VIDEO_MAP = { videos: ["event", "ip", "team"] };
   const pad = (n) => String(n).padStart(2, "0") + " 件";
 
   $$("[data-section]").forEach((sec) => {

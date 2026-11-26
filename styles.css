@@ -400,6 +400,36 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .vcard-info p{margin:0;font-size:13px;color:var(--dim)}
 .vcard .mono{padding-top:12px;display:block}
 
+/* deck (embedded web PPT) */
+.deck-card{
+  display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);
+  gap:clamp(18px,2.8vw,40px);align-items:center;
+  margin-top:clamp(30px,4.5vw,56px);padding:clamp(12px,1.4vw,18px);
+  border:1px solid var(--line);background:var(--bg-2);border-radius:2px;
+  transition:border-color .4s,background .4s;
+}
+.deck-card:hover{border-color:var(--line-2)}
+.deck-cover{position:relative;overflow:hidden;border:1px solid var(--line);background:#0b2a5b;line-height:0}
+.deck-cover img{width:100%;height:auto;display:block;transition:transform .9s cubic-bezier(.22,1,.36,1)}
+.deck-card:hover .deck-cover img{transform:scale(1.035)}
+.deck-open{
+  position:absolute;left:12px;bottom:12px;display:inline-flex;align-items:center;gap:6px;
+  padding:7px 14px;border-radius:100px;background:rgba(8,10,16,.6);color:#fff;
+  font-size:12px;letter-spacing:.04em;line-height:1;backdrop-filter:blur(6px);
+}
+.deck-info{display:flex;flex-direction:column;gap:10px;padding:clamp(4px,1vw,12px) clamp(2px,1vw,10px) clamp(4px,1vw,12px) 0}
+.deck-info h3{margin:0;font-size:clamp(17px,1.85vw,23px);line-height:1.4;font-weight:600;letter-spacing:.01em}
+.deck-info p{margin:0;font-size:13.5px;line-height:1.8;color:var(--dim)}
+.deck-cta{
+  display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+  margin-top:8px;padding:10px 20px;border:1px solid var(--line-2);border-radius:100px;
+  font-size:13px;font-weight:500;color:var(--fg);
+  transition:background .3s,color .3s,border-color .3s;
+}
+.deck-cta i{font-style:normal;transition:transform .3s}
+.deck-card:hover .deck-cta{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.deck-card:hover .deck-cta i{transform:translate(2px,-2px)}
+
 /* ---------------- about ---------------- */
 .about{max-width:var(--maxw);margin:0 auto;padding:clamp(70px,10vw,140px) var(--pad) 0}
 .section-head{display:flex;align-items:baseline;gap:18px;padding-bottom:clamp(28px,4vw,44px);border-bottom:1px solid var(--line);margin-bottom:clamp(30px,4vw,50px)}
@@ -703,6 +733,10 @@ body.light .feature-media{box-shadow:0 2px 6px rgba(0,0,0,.06)}
   .site-foot{flex-direction:column;align-items:flex-start;gap:6px}
   .lb-nav{display:none}
   .lb-stage{align-items:flex-start;padding:10px}
+  .deck-card{grid-template-columns:1fr;gap:14px;padding:12px}
+  .deck-info{padding:2px 4px 8px}
+  .deck-info p{font-size:13px}
+  .deck-cta{align-self:stretch;justify-content:center}
 }
 @media (max-width:420px){
   .grid,#ct .grid,#vi .grid{columns:1}
