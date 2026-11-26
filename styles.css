@@ -430,6 +430,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .deck-card:hover .deck-cta{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 .deck-card:hover .deck-cta i{transform:translate(2px,-2px)}
 
+.deck-shots{list-style:none;margin:clamp(14px,1.8vw,22px) 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.3vw,18px)}
+.deck-shots li{margin:0}
+.deck-shots a{display:block;text-decoration:none}
+.deck-shot-img{display:block;overflow:hidden;border:1px solid var(--line);background:var(--bg-2);line-height:0;transition:border-color .35s}
+.deck-shot-img img{width:100%;height:auto;display:block;transition:transform .9s cubic-bezier(.22,1,.36,1)}
+.deck-shots a:hover .deck-shot-img{border-color:var(--line-2)}
+.deck-shots a:hover .deck-shot-img img{transform:scale(1.025)}
+.deck-shots .mono{display:block;padding:9px 2px 0;font-size:10.5px;letter-spacing:.12em}
+
 /* ---------------- about ---------------- */
 .about{max-width:var(--maxw);margin:0 auto;padding:clamp(70px,10vw,140px) var(--pad) 0}
 .section-head{display:flex;align-items:baseline;gap:18px;padding-bottom:clamp(28px,4vw,44px);border-bottom:1px solid var(--line);margin-bottom:clamp(30px,4vw,50px)}
@@ -637,6 +647,15 @@ body.light .feature-media{box-shadow:0 2px 6px rgba(0,0,0,.06)}
   .vcard-media{max-height:70mm}
   .vcard-info h3{font-size:9pt}
   .vcard-info p{font-size:8pt;color:#555!important}
+  .deck-card{grid-template-columns:1.1fr 1fr!important;background:#fff!important;border-color:#ccc!important;break-inside:avoid}
+  .deck-cover{border-color:#ddd!important}
+  .deck-open,.deck-cta{display:none!important}
+  .deck-info h3{font-size:11.5pt;color:#000!important}
+  .deck-info p{font-size:8.5pt;color:#444!important}
+  .deck-info .mono{color:#666!important}
+  .deck-shots{grid-template-columns:repeat(3,1fr)!important;gap:4mm;margin-top:5mm}
+  .deck-shot-img{border-color:#ddd!important}
+  .deck-shots .mono{color:#666!important;font-size:7pt;padding-top:4px}
   .site-foot{display:none}
   a{color:#000!important;text-decoration:none}
 }
@@ -737,6 +756,7 @@ body.light .feature-media{box-shadow:0 2px 6px rgba(0,0,0,.06)}
   .deck-info{padding:2px 4px 8px}
   .deck-info p{font-size:13px}
   .deck-cta{align-self:stretch;justify-content:center}
+  .deck-shots{grid-template-columns:1fr;gap:14px}
 }
 @media (max-width:420px){
   .grid,#ct .grid,#vi .grid{columns:1}

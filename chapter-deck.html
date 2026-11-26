@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>网页 PPT · 杨金波作品集</title>
+<meta name="description" content="把一套 3 天的线下课压成一份能发链接的汇报稿：57 页横屏网页，键盘或滚轮翻页，手机上横屏可看。版式、图表和照片墙全部用 HTML 搭出来，不依赖 PPT 插件。">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="stylesheet" href="styles.css?v=16">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="chbar">
+  <a class="chbar-back" href="index.html"><span aria-hidden="true">←</span> 作品集</a>
+  <span class="mono chbar-c">Chapter 07 / 08</span>
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换深色 / 浅色" aria-pressed="false"><span>◐</span></button>
+</header>
+
+<main>
+  <section class="chintro" id="ch-deck" data-section="deck">
+    <p class="eyebrow"><span class="dot"></span>07 · 57 页</p>
+    <h1>网页 PPT</h1>
+    <p class="chapter-note">把一套 3 天的线下课压成一份能发链接的汇报稿：57 页横屏网页，键盘或滚轮翻页，手机上横屏可看。版式、图表和照片墙全部用 HTML 搭出来，不依赖 PPT 插件。</p>
+
+    <div class="spec">
+      <div class="spec-cell"><span class="mono">主色</span><span class="swatches"><i style="background:#002FA8"></i><i style="background:#0A1B3D"></i><i style="background:#E9EDF5"></i></span></div>
+      <div class="spec-cell"><span class="mono">规格</span><b>16:9 横屏 · 57 页 · 网页端</b></div>
+      <div class="spec-cell"><span class="mono">交付</span><b>结构梳理 / 版式 / 图表 / 动效</b></div>
+      <div class="spec-cell"><span class="mono">思路</span><b>一页一个结论，翻页即进度，不靠演讲者口才</b></div>
+    </div>
+
+    <a class="deck-card" href="deck/index.html" target="_blank" rel="noopener">
+      <div class="deck-cover">
+        <img src="assets/deck-cover.webp" alt="企业用工风险管控 · 网页 PPT 封面" loading="lazy" decoding="async">
+        <span class="deck-open">进入演示 <i aria-hidden="true">↗</i></span>
+      </div>
+      <div class="deck-info">
+        <span class="mono">网页 PPT · 57 页 · 2024.09</span>
+        <h3>中企法顾《企业用工风险管控》学习总结与汇报</h3>
+        <p>横向翻页的网页版汇报稿，纯 HTML 搭建、无插件：键盘 ← → 或滚轮翻页，总览键看全篇，手机横屏可看。点击另开一页进入演示。</p>
+        <span class="deck-cta">打开网页 PPT <i aria-hidden="true">↗</i></span>
+      </div>
+    </a>
+
+    <ul class="deck-shots">
+      <li>
+        <a href="deck/index.html" target="_blank" rel="noopener">
+          <span class="deck-shot-img"><img src="assets/deck/shot-1.webp" alt="三大环境变化 页面" loading="lazy" decoding="async"></span>
+          <span class="mono">06 · 三大环境变化</span>
+        </a>
+      </li>
+      <li>
+        <a href="deck/index.html" target="_blank" rel="noopener">
+          <span class="deck-shot-img"><img src="assets/deck/shot-2.webp" alt="企业用工风险管控 10 大系统 页面" loading="lazy" decoding="async"></span>
+          <span class="mono">17 · 10 大系统</span>
+        </a>
+      </li>
+      <li>
+        <a href="deck/index.html" target="_blank" rel="noopener">
+          <span class="deck-shot-img"><img src="assets/deck/shot-3.webp" alt="系统班现场 页面" loading="lazy" decoding="async"></span>
+          <span class="mono">42 · 系统班现场</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <nav class="chnav">
+    <a class="chnav-item" href="chapter-xp.html"><span class="mono">上一章</span><b>线下活动海报及详情页</b></a>
+    <a class="chnav-item next" href="chapter-videos.html"><span class="mono">下一章</span><b>视频</b></a>
+  </nav>
+</main>
+
+<footer class="site-foot">
+  <span>© 2026 杨金波</span>
+  <span class="mono">Portfolio · Built with care</span>
+  <span>本站图文与视频均为本人作品</span>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lb-bar">
+    <span class="lb-index mono" id="lbIndex"></span>
+    <span class="lb-title" id="lbTitle"></span>
+    <button class="lb-close" id="lbClose" aria-label="关闭">✕</button>
+  </div>
+  <button class="lb-nav prev" id="lbPrev" aria-label="上一张">←</button>
+  <button class="lb-nav next" id="lbNext" aria-label="下一张">→</button>
+  <div class="lb-stage" id="lbStage"></div>
+  <p class="lb-desc" id="lbDesc"></p>
+</div>
+
+<script src="data.js?v=16"></script>
+<script src="app.js?v=16"></script>
+</body>
+</html>
